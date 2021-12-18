@@ -65,11 +65,11 @@ func main() {
 	fmt.Printf("pub key : %s\n", public)
 
 	// custom stuff - hardcoded for now
-	err = ioutil.WriteFile("key", []byte(private), 0644)
+	err = ioutil.WriteFile("besu.key", []byte(private), 0400)
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = ioutil.WriteFile("key.pub", []byte(public), 0644)
+	err = ioutil.WriteFile("besu.pub", []byte(public), 0444)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -83,7 +83,7 @@ key-file = "/opt/ethsigner/keys/` + keyFile + `"
 password-file = "/opt/ethsigner/keys/` + passwordFile + `"
 `
 	)
-	err = ioutil.WriteFile(passwordFile, []byte(*passphrase), 0644)
+	err = ioutil.WriteFile(passwordFile, []byte(*passphrase), 0400)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -91,7 +91,7 @@ password-file = "/opt/ethsigner/keys/` + passwordFile + `"
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = ioutil.WriteFile(address[2:]+".toml", []byte(ethsignerTemplate), 0644)
+	err = ioutil.WriteFile(address[2:]+".toml", []byte(ethsignerTemplate), 0444)
 	if err != nil {
 		log.Fatal(err)
 	}
