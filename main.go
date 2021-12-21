@@ -8,17 +8,12 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 )
-
-const ethsignerKeyTemplate = `[signing]
-type = "file-based-signer"
-key-file = "/opt/ethsigner/keys/validator"
-password-file = "/opt/ethsigner/keys/password"
-`
 
 func main() {
 	var passphrase = flag.String("p", os.Getenv("KETHS_PASSPHRASE"), "passphrase used to encypt web3 store. env: [KETHS_PASSPHRASE]")
@@ -91,7 +86,7 @@ password-file = "/opt/ethsigner/keys/` + passwordFile + `"
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = ioutil.WriteFile(address[2:]+".toml", []byte(ethsignerTemplate), 0444)
+	err = ioutil.WriteFile(strings.ToLower(address[2:])+".toml", []byte(ethsignerTemplate), 0444)
 	if err != nil {
 		log.Fatal(err)
 	}
