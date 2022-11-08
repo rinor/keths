@@ -1,2 +1,2 @@
 # keths
-etherem keys generator and ethsigner config
+ethereum keys generator and ethsigner config
